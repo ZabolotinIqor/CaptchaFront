@@ -1,0 +1,51 @@
+<form [formGroup]="captchaForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label>Name:</label>
+    <input type="text" formControlName="name">
+  </p>
+  <p>
+    <label>Has Cyrillic:</label>
+    <input type="checkbox" formControlName="hasCyrillic">
+  </p>
+  <p>
+    <label>Has Latin:</label>
+    <input type="checkbox" formControlName="hasLatin">
+  </p>
+  <p>
+    <label>Has Numeric:</label>
+    <input type="checkbox" formControlName="hasNumeric">
+  </p>
+  <p>
+    <label>Has Special Symbols:</label>
+    <input type="checkbox" formControlName="hasSpecialSymbols">
+  </p>
+  <p>
+    <label>Is Case Sensitive:</label>
+    <input type="checkbox" formControlName="isCaseSensitive">
+  </p>
+  <p>
+    <label>Has Answer:</label>
+    <input type="checkbox" formControlName="hasAnswer">
+  </p>
+  <p>
+    <label>Archive:</label>
+    <input type="file" formControlName="archive" (change)="onFileChange($event)">
+  </p>
+  <p>
+    <button type="submit" >Submit</button>
+  </p>
+</form>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Creation Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let captcha of captchas; index as i">
+    <th>{{captcha.name}}</th>
+    <td>{{ captcha.creationDate| date:'shortDate'  }}</td>
+  </tr>
+  </tbody>
+</table>
