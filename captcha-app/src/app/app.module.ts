@@ -7,11 +7,13 @@ import {MainPageComponent} from "../pages/main-page/main-page.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ToastsContainer} from "../utils/toast-container.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageComponent
+    MainPageComponent,
+    ToastsContainer
   ],
   imports: [
     BrowserModule,

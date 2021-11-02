@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CaptchaService} from "../../services/captcha.service";
 import {CaptchaResponseDto} from "../../models/caprtchaResponseDto";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
+import {ToastService} from "../../services/toast.service";
 
 @Component({
   selector: 'app-main-page',
@@ -11,7 +12,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class MainPageComponent implements OnInit {
   captchas: CaptchaResponseDto[] = [];
   captchaForm : FormGroup;
-  constructor(private  captchaService: CaptchaService) {
+  constructor(private  captchaService: CaptchaService,private toastService: ToastService) {
     this.createForm();
   }
 
@@ -22,7 +23,11 @@ export class MainPageComponent implements OnInit {
   onSubmit(){
     const formData = this.toFormData(this.captchaForm.value);
     formData.append('archive', this.captchaForm.get('archive').value);
-    this.captchaService.saveCaptcha(formData).subscribe((data)=> this.captchas.push(data));
+    this.captchaService.saveCaptcha(formData).subscribe((data)=> this.captchas.push(data),
+      error => error.error.errors.Name.map(value => { this.toastService.show(value, {
+        classname: 'bg-danger text-light',
+        delay: 10000,
+      });}));
   }
   onFileChange(event) {
     if (event.target.files.length > 0) {

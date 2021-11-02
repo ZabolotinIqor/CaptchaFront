@@ -1,39 +1,39 @@
-<form [formGroup]="captchaForm" (ngSubmit)="onSubmit()">
-  <p>
+<form [formGroup]="captchaForm" (ngSubmit)="onSubmit()" class="form-container">
+  <span class="form-item">
     <label>Name:</label>
     <input type="text" formControlName="name">
-  </p>
-  <p>
+  </span>
+  <span class="form-item">
     <label>Has Cyrillic:</label>
     <input type="checkbox" formControlName="hasCyrillic">
-  </p>
-  <p>
+  </span >
+  <span class="form-item">
     <label>Has Latin:</label>
     <input type="checkbox" formControlName="hasLatin">
-  </p>
-  <p>
+  </span>
+  <span class="form-item">
     <label>Has Numeric:</label>
     <input type="checkbox" formControlName="hasNumeric">
-  </p>
-  <p>
+  </span>
+  <span class="form-item">
     <label>Has Special Symbols:</label>
     <input type="checkbox" formControlName="hasSpecialSymbols">
-  </p>
-  <p>
+  </span>
+  <span class="form-item">
     <label>Is Case Sensitive:</label>
     <input type="checkbox" formControlName="isCaseSensitive">
-  </p>
-  <p>
+  </span>
+  <span class="form-item">
     <label>Has Answer:</label>
     <input type="checkbox" formControlName="hasAnswer">
-  </p>
-  <p>
+  </span>
+  <span class="form-item">
     <label>Archive:</label>
     <input type="file" formControlName="archive" (change)="onFileChange($event)">
-  </p>
-  <p>
+  </span>
+  <span>
     <button type="submit" >Submit</button>
-  </p>
+  </span>
 </form>
 <table class="table table-striped">
   <thead>
@@ -49,3 +49,4 @@
   </tr>
   </tbody>
 </table>
+<app-toasts></app-toasts>
